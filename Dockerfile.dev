@@ -1,0 +1,17 @@
+#Set a base image for out docker image
+FROM node:alpine
+
+#setting workdir in container
+WORKDIR /usr/app
+
+#Copy only package.json file into the directory
+COPY package.json .
+
+#Install dependencies
+RUN npm i
+
+#Copy everything else to the container
+COPY . .
+
+#Set default command to run when we run a container
+CMD ["npm","run","start"]
